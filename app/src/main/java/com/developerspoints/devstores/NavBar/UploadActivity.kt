@@ -46,6 +46,9 @@ class UploadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload)
 
+        val navBar = NavBar(this)
+        navBar.setupNavBar()
+
         etDescription = findViewById(R.id.et_description)
 
         etFileName = findViewById(R.id.et_file_name)
