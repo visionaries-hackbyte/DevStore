@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.developerspoints.devstores.Model.AppModels
+import com.developerspoints.devstores.Model.AppModel
 import com.developerspoints.devstores.NavBar.NavBar
 import com.developerspoints.devstores.R
 import com.google.firebase.database.*
@@ -13,8 +13,8 @@ import com.google.firebase.database.*
 class Home : AppCompatActivity() {
     private lateinit var recyclerViewAvailable: RecyclerView
     private lateinit var recyclerViewTrending: RecyclerView
-    private val appListAvailable = mutableListOf<AppModels>()
-    private val appListTrending = mutableListOf<AppModels>()
+    private val appListAvailable = mutableListOf<AppModel>()
+    private val appListTrending = mutableListOf<AppModel>()
     private val databaseRef = FirebaseDatabase.getInstance().reference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,13 +42,14 @@ class Home : AppCompatActivity() {
                 appListTrending.clear()
 
                 for (appSnapshot in snapshot.children) {
-                    Log.d("Firebase", "Raw Data: ${appSnapshot.value}") // Log raw data
-
-
-                    val app = appSnapshot.getValue(AppModels::class.java)
-                    if (app != null) {
-                        appListAvailable.add(app)
-                        appListTrending.add(app)
+                    try {
+                        val app = appSnapshot.getValue(AppModel::class.java)
+                        if (app != null) {
+                            appListAvailable.add(app)
+                            appListTrending.add(app)
+                        }
+                    } catch (e: Exception) {
+                        Log.e("Firebase", "Error mapping app data: ${e.message}")
                     }
                 }
 

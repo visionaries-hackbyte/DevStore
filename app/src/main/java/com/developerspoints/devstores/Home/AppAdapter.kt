@@ -1,5 +1,6 @@
 package com.developerspoints.devstores.Home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,10 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.developerspoints.devstores.Model.AppModels
 import com.developerspoints.devstores.R
+import com.developerspoints.devstores.AppDetail.AppDetailsActivity
+import com.developerspoints.devstores.Model.AppModel
 
-class AppAdapter(private val appList: List<AppModels>) : RecyclerView.Adapter<AppAdapter.AppViewHolder>() {
+class AppAdapter(private val appList: MutableList<AppModel>) : RecyclerView.Adapter<AppAdapter.AppViewHolder>() {
 
     class AppViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val appLogo: ImageView = view.findViewById(R.id.app_logo)
@@ -26,12 +28,23 @@ class AppAdapter(private val appList: List<AppModels>) : RecyclerView.Adapter<Ap
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
         val app = appList[position]
         holder.fileName.text = app.fileName
-        holder.developerName.text = app.uploaderId
+        holder.developerName.text = app.uploadedBy
 
         Glide.with(holder.itemView.context)
-            .load(app.fileUrl)
+            .load(app.picUrl)
             .placeholder(R.drawable.logo)
             .into(holder.appLogo)
+
+        holder.itemView.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, AppDetailsActivity::class.java).apply {
+                putExtra("fileName", app.fileName)
+                putExtra("developerName", app.uploadedBy)
+                putExtra("logoUrl", app.picUrl)
+                putExtra("uploadId", app.uploadId)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
