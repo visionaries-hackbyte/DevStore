@@ -22,13 +22,13 @@
             android:name=".AppDetail.AppDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".NavBar.CategoriesActivity"
+            android:name=".Categories.CategoriesActivity"
             android:exported="false" />
         <activity
-            android:name=".NavBar.DownloadsActivity"
+            android:name=".Downloads.DownloadsActivity"
             android:exported="false" />
         <activity
-            android:name=".NavBar.UploadActivity"
+            android:name=".Upload.UploadActivity"
             android:exported="false" />
         <activity
             android:name=".Home.Home"

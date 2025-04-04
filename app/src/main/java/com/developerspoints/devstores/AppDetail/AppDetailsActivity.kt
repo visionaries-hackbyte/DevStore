@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.developerspoints.devstores.NavBar.NavBar
 import com.developerspoints.devstores.R
 import com.google.firebase.database.*
 
@@ -20,6 +21,9 @@ class AppDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app_details)
+
+        val navBar = NavBar(this)
+        navBar.setupNavBar()
 
         // UI Elements
         val appLogo = findViewById<ImageView>(R.id.app_logo)

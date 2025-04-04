@@ -1,4 +1,4 @@
-package com.developerspoints.devstores.NavBar
+package com.developerspoints.devstores.Upload
 
 import android.content.Intent
 import android.net.Uri
@@ -11,12 +11,14 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.developerspoints.devstores.NavBar.NavBar
 import com.developerspoints.devstores.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
-import com.google.firebase.auth.FirebaseAuth
-import java.util.*
+import java.util.Locale
+import java.util.UUID
 
 class UploadActivity : AppCompatActivity() {
 

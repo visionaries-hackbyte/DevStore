@@ -1,10 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NavBar.DownloadsActivity">
+    tools:context=".Downloads.DownloadsActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/upper_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Downloads"
+            android:textColor="@color/LoginBtn"
+            android:textSize="24sp"
+            android:fontFamily="@font/montserrat_semibold" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/upper_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/upper_toolbar"
+        android:background="@color/LoginBtn" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/downloads"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/upper_divider"
+        android:padding="8dp"
+        android:clipToPadding="false"/>
+
+
+</RelativeLayout>

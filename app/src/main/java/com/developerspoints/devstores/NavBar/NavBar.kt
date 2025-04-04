@@ -3,8 +3,11 @@ package com.developerspoints.devstores.NavBar
 import android.content.Intent
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.developerspoints.devstores.Categories.CategoriesActivity
+import com.developerspoints.devstores.Downloads.DownloadsActivity
 import com.developerspoints.devstores.Home.Home
 import com.developerspoints.devstores.R
+import com.developerspoints.devstores.Upload.UploadActivity
 
 class NavBar(private val activity: AppCompatActivity) {
 
