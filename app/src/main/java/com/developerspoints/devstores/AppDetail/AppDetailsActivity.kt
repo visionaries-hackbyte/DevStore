@@ -1,11 +1,16 @@
 package com.developerspoints.devstores.AppDetail
 
+import android.app.DownloadManager
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.developerspoints.devstores.R
@@ -35,7 +40,6 @@ class AppDetailsActivity : AppCompatActivity() {
         Glide.with(this).load(intentLogoUrl).placeholder(R.drawable.logo).into(appLogo)
 
         if (appId != null) {
-            // Corrected path: "uploads" not "upload"
             val database = FirebaseDatabase.getInstance().getReference("uploads").child(appId)
 
             database.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -51,23 +55,30 @@ class AppDetailsActivity : AppCompatActivity() {
                         appNameText.text = fileName
                         developerNameText.text = uploadedBy
                         descriptionText.text = description
+                        Glide.with(this@AppDetailsActivity).load(picUrl).placeholder(R.drawable.logo).into(appLogo)
 
-                        Glide.with(this@AppDetailsActivity)
-                            .load(picUrl)
-                            .placeholder(R.drawable.logo)
-                            .into(appLogo)
-
+                        // Download Button Functionality
                         if (fileUrl.isNotEmpty()) {
                             downloadButton.setOnClickListener {
-                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(fileUrl))
-                                startActivity(intent)
+                                val request = DownloadManager.Request(Uri.parse(fileUrl))
+                                request.setTitle("Downloading $fileName")
+                                request.setDescription("Please wait...")
+                                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "$fileName.apk")
+                                request.setAllowedOverMetered(true)
+                                request.setAllowedOverRoaming(true)
+
+                                val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                                downloadManager.enqueue(request)
+
+                                Toast.makeText(this@AppDetailsActivity, "Downloading started...", Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    // Optionally handle the error
+                    Toast.makeText(this@AppDetailsActivity, "Failed to load app details.", Toast.LENGTH_SHORT).show()
                 }
             })
         }
