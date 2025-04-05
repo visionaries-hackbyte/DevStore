@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.developerspoints.devstores.R
 
 class ImageSliderAdapter(
@@ -22,8 +23,10 @@ class ImageSliderAdapter(
     override fun onBindViewHolder(holder: SliderViewHolder, position: Int) {
         Glide.with(context)
             .load(imageUrls[position])
+            .transform(RoundedCorners(50))
             .into(holder.imageView)
     }
+
 
     override fun getItemCount(): Int = imageUrls.size
 
