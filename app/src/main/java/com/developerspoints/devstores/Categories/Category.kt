@@ -1,5 +1,6 @@
 package com.developerspoints.devstores.Categories
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.developerspoints.devstores.R
 import com.developerspoints.devstores.Categories.CategoryAdapter
 import com.developerspoints.devstores.NavBar.NavBar
+import com.developerspoints.devstores.AppDetail.AppDetailsActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -27,7 +29,21 @@ class Category : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        categoryAdapter = CategoryAdapter(categoryList)
+
+        // Initialize adapter with click listener
+        categoryAdapter = CategoryAdapter(categoryList) { appItem ->
+            // Handle item click - navigate to AppDetailsActivity
+            val intent = Intent(this, AppDetailsActivity::class.java).apply {
+                putExtra("uploadId", appItem.uploadId)
+                putExtra("fileName", appItem.fileName)
+                putExtra("developerName", appItem.uploadedBy)
+                putExtra("logoUrl", appItem.picUrl)
+                putExtra("description", appItem.description)
+                putExtra("fileUrl", appItem.fileUrl)
+            }
+            startActivity(intent)
+        }
+
         recyclerView.adapter = categoryAdapter
 
         fetchCategoriesAndApps()

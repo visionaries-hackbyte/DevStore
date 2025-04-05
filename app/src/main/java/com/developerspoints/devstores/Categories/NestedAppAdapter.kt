@@ -28,7 +28,6 @@ class NestedAppAdapter(private val apps: List<AppItem>) : RecyclerView.Adapter<N
         holder.appName.text = app.fileName
         holder.appDescription.text = app.description
 
-        // Load image using Glide or Picasso
         Glide.with(holder.itemView.context)
             .load(app.picUrl)
             .into(holder.appIcon)

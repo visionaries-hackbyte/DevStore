@@ -42,20 +42,17 @@ class AppDetailsActivity : AppCompatActivity() {
             Context.RECEIVER_NOT_EXPORTED
         )
 
-        // UI Elements
         val appLogo = findViewById<ImageView>(R.id.app_logo)
         val appNameText = findViewById<TextView>(R.id.app_name)
         val developerNameText = findViewById<TextView>(R.id.app_uploaded_by)
         val descriptionText = findViewById<TextView>(R.id.app_description)
         val downloadButton = findViewById<Button>(R.id.download_button)
 
-        // Get data from Intent
         val appId = intent.getStringExtra("uploadId")
         val intentFileName = intent.getStringExtra("fileName") ?: "Unknown App"
         val intentDeveloper = intent.getStringExtra("developerName") ?: "Unknown Developer"
         val intentLogoUrl = intent.getStringExtra("logoUrl") ?: ""
 
-        // Set initial UI from Intent
         appNameText.text = intentFileName
         developerNameText.text = intentDeveloper
         Glide.with(this).load(intentLogoUrl).placeholder(R.drawable.logo).into(appLogo)

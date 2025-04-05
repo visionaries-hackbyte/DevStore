@@ -1,5 +1,6 @@
 package com.developerspoints.devstores.Search
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.developerspoints.devstores.AppDetail.AppDetailsActivity
 import com.developerspoints.devstores.R
 import com.developerspoints.devstores.model.AppItem
 import com.developerspoints.devstores.model.DeveloperItem
@@ -66,9 +68,19 @@ class SearchAdapter(private val items: List<Any>) : RecyclerView.Adapter<Recycle
             appName.text = appItem.fileName
             appDescription.text = appItem.description
             appDeveloper.text = "By ${appItem.uploadedBy}"
+
+            itemView.setOnClickListener {
+                val context = itemView.context
+                val intent = Intent(context, AppDetailsActivity::class.java).apply {
+                    putExtra("uploadId", appItem.uploadId)
+                    putExtra("fileName", appItem.fileName)
+                    putExtra("developerName", appItem.uploadedBy)
+                    putExtra("logoUrl", appItem.picUrl)
+                }
+                context.startActivity(intent)
+            }
         }
     }
-
     inner class DeveloperViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val developerAvatar: ImageView = itemView.findViewById(R.id.developerAvatar)
         private val developerName: TextView = itemView.findViewById(R.id.developerName)

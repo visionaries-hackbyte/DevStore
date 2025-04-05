@@ -105,7 +105,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:fontFamily="@font/montserrat_semibold"
-                android:text="Available Apps"
+                android:text="Trending Apps"
                 android:textColor="@color/LoginBtn"
                 android:textSize="28sp" />
 
@@ -126,7 +126,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:fontFamily="@font/montserrat_semibold"
-                android:text="Trending Apps"
+                android:text="Available Apps"
                 android:textColor="@color/LoginBtn"
                 android:textSize="28sp" />
 
@@ -134,8 +134,7 @@
                 android:id="@+id/trending_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/trending_txt"
-                android:layout_marginTop="29dp">
+                android:layout_below="@+id/trending_txt">
 
             </androidx.recyclerview.widget.RecyclerView>
 

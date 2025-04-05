@@ -21,7 +21,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var searchEditText: EditText
     private lateinit var searchResultsRecyclerView: RecyclerView
     private lateinit var searchAdapter: SearchAdapter
-    private val searchResults = mutableListOf<Any>() // Can contain both AppItem and DeveloperItem
+    private val searchResults = mutableListOf<Any>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,12 +30,11 @@ class SearchActivity : AppCompatActivity() {
         searchEditText = findViewById(R.id.searchEditText)
         searchResultsRecyclerView = findViewById(R.id.searchResultsRecyclerView)
 
-        // Setup RecyclerView
         searchAdapter = SearchAdapter(searchResults)
         searchResultsRecyclerView.layoutManager = LinearLayoutManager(this)
         searchResultsRecyclerView.adapter = searchAdapter
 
-        // Setup search functionality
+
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -54,7 +53,6 @@ class SearchActivity : AppCompatActivity() {
     private fun performSearch(query: String) {
         searchResults.clear()
 
-        // Search in apps (from uploads)
         val uploadsRef = FirebaseDatabase.getInstance().getReference("uploads")
         uploadsRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -80,7 +78,6 @@ class SearchActivity : AppCompatActivity() {
                     }
                 }
 
-                // Search in developers (from users)
                 val usersRef = FirebaseDatabase.getInstance().getReference("users")
                 usersRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(userSnapshot: DataSnapshot) {
