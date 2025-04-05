@@ -39,5 +39,13 @@
         android:padding="8dp"
         android:clipToPadding="false"/>
 
+    <include
+        android:id="@+id/bottom_nav"
+        layout="@layout/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"/>
+
 
 </RelativeLayout>

@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text="Upload App"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="30sp"
             android:fontFamily="@font/montserrat_semibold" />
     </LinearLayout>
 
@@ -31,12 +31,13 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/upper_toolbar"
-        android:background="@color/gray_light" />
+        android:background="@color/LoginBtn" />
 
-    <!-- Scrollable form content -->
+    <!-- Scrollable content (above navigation) -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/bottom_nav"
         android:layout_below="@id/upper_divider"
         android:fillViewport="true">
 
@@ -284,11 +285,11 @@
         </LinearLayout>
     </ScrollView>
 
+    <!-- Bottom Navigation (fixed outside scroll) -->
     <include
         android:id="@+id/bottom_nav"
         layout="@layout/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="15dp"/>
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

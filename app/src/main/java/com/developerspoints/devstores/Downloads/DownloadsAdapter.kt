@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.developerspoints.devstores.Model.AppModel
+import com.developerspoints.devstores.Model.dmodel
 import com.developerspoints.devstores.R
 
-class DownloadsAdapter(private val list: MutableList<AppModel>) :
+class DownloadsAdapter(private val list: MutableList<dmodel>) :
     RecyclerView.Adapter<DownloadsAdapter.DownloadViewHolder>() {
 
     class DownloadViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -29,10 +30,10 @@ class DownloadsAdapter(private val list: MutableList<AppModel>) :
         val app = list[position]
 
         holder.appName.text = app.fileName
-        holder.developerName.text = app.uploadedBy
+        holder.developerName.text = app.developerName
 
         Glide.with(holder.itemView.context)
-            .load(app.picUrl)
+            .load(app.logoUrl) // ✅ Use `logoUrl`
             .placeholder(R.drawable.logo)
             .error(R.drawable.logo)
             .into(holder.appLogo)
