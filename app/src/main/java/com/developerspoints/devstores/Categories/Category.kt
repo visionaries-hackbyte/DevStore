@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.developerspoints.devstores.R
-import com.developerspoints.devstores.Categories.CategoryAdapter
 import com.developerspoints.devstores.NavBar.NavBar
-import com.developerspoints.devstores.AppDetail.AppDetailsActivity
+import com.developerspoints.devstores.AppDetail_download.AppDetailsActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

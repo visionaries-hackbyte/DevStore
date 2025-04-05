@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -37,9 +38,14 @@ class SignUp : AppCompatActivity() {
             setBackgroundDrawable(ContextCompat.getDrawable(this@SignUp, R.color.white))
         }
 
-        // Initialize Firebase
         FirebaseApp.initializeApp(this)
         firebaseAuth = FirebaseAuth.getInstance()
+
+        val backButton = findViewById<ImageButton>(R.id.toolbar_back)
+        backButton.setOnClickListener {
+            val intent = Intent(this, Start::class.java)
+            startActivity(intent)
+        }
 
 
         val etUsername = findViewById<EditText>(R.id.et_username)
@@ -54,7 +60,6 @@ class SignUp : AppCompatActivity() {
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        // Set up Google login button
         googleButton.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, RC_SIGN_IN)

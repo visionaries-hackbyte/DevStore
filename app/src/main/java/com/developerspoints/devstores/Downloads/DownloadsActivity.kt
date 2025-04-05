@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.developerspoints.devstores.Model.AppModel
-import com.developerspoints.devstores.Model.dmodel
+import com.developerspoints.devstores.model.dmodel
 import com.developerspoints.devstores.NavBar.DownloadsAdapter
 import com.developerspoints.devstores.NavBar.NavBar
 import com.developerspoints.devstores.R

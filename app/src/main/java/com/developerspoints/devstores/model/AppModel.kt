@@ -1,4 +1,4 @@
-package com.developerspoints.devstores.Model
+package com.developerspoints.devstores.model
 
 data class AppModel(
     val fileName: String = "",

@@ -1,4 +1,4 @@
-package com.developerspoints.devstores.AppDetail
+package com.developerspoints.devstores.AppDetail_download
 
 import android.app.DownloadManager
 import android.content.BroadcastReceiver

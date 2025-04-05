@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -34,6 +35,12 @@ class Login : AppCompatActivity() {
             addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             statusBarColor = ContextCompat.getColor(this@Login, android.R.color.transparent)
             setBackgroundDrawable(ContextCompat.getDrawable(this@Login, R.color.white))
+        }
+
+        val backButton = findViewById<ImageButton>(R.id.toolbar_back)
+        backButton.setOnClickListener {
+            val intent = Intent(this, Start::class.java)
+            startActivity(intent)
         }
 
         sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)

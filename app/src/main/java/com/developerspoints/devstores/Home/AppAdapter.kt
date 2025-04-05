@@ -9,8 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.developerspoints.devstores.R
-import com.developerspoints.devstores.AppDetail.AppDetailsActivity
-import com.developerspoints.devstores.Model.AppModel
+import com.developerspoints.devstores.AppDetail_download.AppDetailsActivity
+import com.developerspoints.devstores.model.AppModel
 
 class AppAdapter(private val appList: MutableList<AppModel>) : RecyclerView.Adapter<AppAdapter.AppViewHolder>() {
 

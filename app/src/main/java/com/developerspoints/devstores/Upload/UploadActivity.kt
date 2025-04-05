@@ -1,7 +1,6 @@
 package com.developerspoints.devstores.Upload
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -19,6 +18,8 @@ import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.UUID
+import android.net.Uri
+import java.io.File
 
 class UploadActivity : AppCompatActivity() {
 
@@ -41,6 +42,7 @@ class UploadActivity : AppCompatActivity() {
 
     private var apkUri: Uri? = null
     private var logoUri: Uri? = null
+    private var downloadedApkFile: File? = null
     private val storageRef = FirebaseStorage.getInstance().reference
     private val databaseRef = FirebaseDatabase.getInstance().reference.child("uploads")
 
@@ -50,6 +52,8 @@ class UploadActivity : AppCompatActivity() {
 
         val navBar = NavBar(this)
         navBar.setupNavBar()
+
+
 
         etDescription = findViewById(R.id.et_description)
 
@@ -94,6 +98,7 @@ class UploadActivity : AppCompatActivity() {
             when (requestCode) {
                 1 -> {
                     apkUri = fileUri
+                    downloadedApkFile = File(fileUri.path ?: "")
                     uploadFileToStorage(apkUri!!, "apk")
                 }
                 2 -> {
@@ -108,11 +113,14 @@ class UploadActivity : AppCompatActivity() {
         val fileName = UUID.randomUUID().toString()
         val fileRef = storageRef.child("$type/$fileName")
 
-        // Show progress UI and disable button
         when (type) {
             "apk" -> {
+                etFileUrl.setText(fileUri.toString())
                 apkProgressContainer.visibility = View.VISIBLE
                 btnUploadApk.isEnabled = false
+
+                Toast.makeText(this, "Scanning APK for malware...", Toast.LENGTH_SHORT).show()
+
             }
             "logo" -> {
                 logoProgressContainer.visibility = View.VISIBLE
@@ -122,7 +130,6 @@ class UploadActivity : AppCompatActivity() {
 
         val uploadTask = fileRef.putFile(fileUri)
 
-        // Add progress listener
         uploadTask.addOnProgressListener { taskSnapshot ->
             val progress = (100.0 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toInt()
             when (type) {
@@ -136,7 +143,6 @@ class UploadActivity : AppCompatActivity() {
                 }
             }
         }.addOnSuccessListener {
-            // Get download URL after successful upload
             fileRef.downloadUrl.addOnSuccessListener { uri ->
                 when (type) {
                     "apk" -> {
@@ -222,6 +228,17 @@ class UploadActivity : AppCompatActivity() {
         etUploadTime.setText("")
         etDescription.setText("")
 
+        downloadedApkFile?.let { file ->
+            if (file.exists()) {
+                try {
+                    file.delete()
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Failed to delete APK file", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        downloadedApkFile = null
+
         apkUri = null
         logoUri = null
 
@@ -236,4 +253,22 @@ class UploadActivity : AppCompatActivity() {
         btnUploadLogo.isEnabled = true
     }
 
+    private fun handleInstallationResult(success: Boolean) {
+        downloadedApkFile?.let { file ->
+            if (file.exists()) {
+                try {
+                    file.delete()
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Failed to delete APK file", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        downloadedApkFile = null
+
+        if (success) {
+            Toast.makeText(this, "Installation successful", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Installation failed", Toast.LENGTH_SHORT).show()
+        }
+    }
 }

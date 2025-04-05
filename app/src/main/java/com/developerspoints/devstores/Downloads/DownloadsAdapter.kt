@@ -7,8 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.developerspoints.devstores.Model.AppModel
-import com.developerspoints.devstores.Model.dmodel
+import com.developerspoints.devstores.model.dmodel
 import com.developerspoints.devstores.R
 
 class DownloadsAdapter(private val list: MutableList<dmodel>) :

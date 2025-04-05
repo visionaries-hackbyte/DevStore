@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.developerspoints.devstores.Model.AppModel
+import com.developerspoints.devstores.model.AppModel
 import com.developerspoints.devstores.NavBar.NavBar
 import com.developerspoints.devstores.Profile.Profile
 import com.developerspoints.devstores.R
