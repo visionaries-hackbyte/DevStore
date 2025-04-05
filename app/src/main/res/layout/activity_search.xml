@@ -41,13 +41,16 @@
         android:layout_below="@id/searchContainer"
         android:orientation="horizontal">
 
-        <TextView
+        <Button
             android:id="@+id/tabApps"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:text="Apps"
+            android:background="@drawable/rounded_outline_button"
             android:fontFamily="@font/montserrat_medium"
             android:textColor="@color/LoginBtn"
             android:textSize="16sp" />
@@ -57,7 +60,7 @@
             android:layout_height="match_parent"
             android:background="#333333"/>
 
-        <TextView
+        <Button
             android:id="@+id/tabDevelopers"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -65,9 +68,11 @@
             android:gravity="center"
             android:text="Developers"
             android:fontFamily="@font/montserrat_medium"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
             android:textColor="@color/LoginBtn"
             android:textSize="16sp"
-            android:background="?attr/selectableItemBackground"/>
+            android:background="@drawable/rounded_outline_button"/>
     </LinearLayout>
 
     <!-- Results -->

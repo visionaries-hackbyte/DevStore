@@ -19,33 +19,36 @@
         android:weightSum="5">
 
         <!-- Categories -->
+
+        <!-- Home -->
         <LinearLayout
             android:id="@+id/navbar_history"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:paddingVertical="4dp">
 
             <ImageButton
                 android:id="@+id/history"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@null"
+                android:clickable="false"
+                android:focusable="false"
                 android:src="@drawable/categories" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Categories"
                 android:fontFamily="@font/montserrat_medium"
+                android:gravity="center"
+                android:text="Categories"
                 android:textColor="@color/LoginBtn"
-                android:textSize="12sp"
-                android:gravity="center" />
+                android:textSize="12sp" />
         </LinearLayout>
 
-        <!-- Home -->
         <LinearLayout
             android:id="@+id/navbar_home"
             android:layout_width="0dp"
@@ -57,9 +60,11 @@
 
             <ImageButton
                 android:id="@+id/home"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@null"
+                android:clickable="false"
+                android:focusable="false"
                 android:src="@drawable/home" />
 
             <TextView
@@ -83,9 +88,11 @@
 
             <ImageButton
                 android:id="@+id/search"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@null"
+                android:clickable="false"
+                android:focusable="false"
                 android:src="@drawable/search" />
 
             <TextView
@@ -110,9 +117,11 @@
 
             <ImageButton
                 android:id="@+id/upload"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@null"
+                android:clickable="false"
+                android:focusable="false"
                 android:src="@drawable/upload" />
 
             <TextView
@@ -137,9 +146,11 @@
 
             <ImageButton
                 android:id="@+id/download"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@null"
+                android:clickable="false"
+                android:focusable="false"
                 android:src="@drawable/download" />
 
             <TextView
