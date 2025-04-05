@@ -7,6 +7,7 @@ import com.developerspoints.devstores.Categories.Category
 import com.developerspoints.devstores.Downloads.DownloadsActivity
 import com.developerspoints.devstores.Home.Home
 import com.developerspoints.devstores.R
+import com.developerspoints.devstores.Search.SearchActivity
 import com.developerspoints.devstores.Upload.UploadActivity
 
 class NavBar(private val activity: AppCompatActivity) {
@@ -16,6 +17,12 @@ class NavBar(private val activity: AppCompatActivity) {
         val navBarUpload: LinearLayout = activity.findViewById(R.id.navbar_upload)
         val navBarDownload: LinearLayout = activity.findViewById(R.id.navbar_download)
         val navBarHistory: LinearLayout = activity.findViewById(R.id.navbar_history)
+        val navBarSearch: LinearLayout = activity.findViewById(R.id.navbar_search)
+
+        navBarSearch.setOnClickListener {
+            val intent = Intent(activity, SearchActivity::class.java)
+            activity.startActivity(intent)
+        }
 
         navBarHome.setOnClickListener {
             val intent = Intent(activity, Home::class.java)
