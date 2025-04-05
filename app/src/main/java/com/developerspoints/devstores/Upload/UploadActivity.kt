@@ -175,14 +175,15 @@ class UploadActivity : AppCompatActivity() {
         val uploadTime = System.currentTimeMillis()
         val uploadId = databaseRef.push().key ?: return
 
-        var etDescription = etDescription.text.toString().trim()
+        val categoryName = fileType
+        val description = etDescription.text.toString().trim()
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userName = currentUser?.displayName ?: currentUser?.email ?: "Unknown User"
 
         etUploadTime.setText(SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(uploadTime))
 
-        if (fileName.isEmpty() || fileType.isEmpty() || fileUrl.isEmpty() || picUrl.isEmpty() || etDescription.isEmpty()) {
+        if (fileName.isEmpty() || fileType.isEmpty() || fileUrl.isEmpty() || picUrl.isEmpty() || description.isEmpty()) {
             Toast.makeText(this, "All fields are required!", Toast.LENGTH_SHORT).show()
             return
         }
@@ -192,18 +193,47 @@ class UploadActivity : AppCompatActivity() {
             "fileType" to fileType,
             "fileUrl" to fileUrl,
             "uploadTime" to uploadTime,
-            "description" to etDescription,
+            "description" to description,
             "uploadId" to uploadId,
             "picUrl" to picUrl,
             "uploadedBy" to userName
         )
 
-        databaseRef.child(uploadId).setValue(appData)
+        val updates = hashMapOf<String, Any>(
+            "/uploads/$uploadId" to appData,
+            "/categories/$categoryName/Apps/$uploadId" to appData
+        )
+
+        FirebaseDatabase.getInstance().reference.updateChildren(updates)
             .addOnSuccessListener {
                 Toast.makeText(this, "Upload Successful!", Toast.LENGTH_SHORT).show()
+                resetForm()
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Upload Failed!", Toast.LENGTH_SHORT).show()
             }
     }
+
+    private fun resetForm() {
+        etFileName.setText("")
+        etFileType.setText("")
+        etFileUrl.setText("")
+        etPicUrl.setText("")
+        etUploadTime.setText("")
+        etDescription.setText("")
+
+        apkUri = null
+        logoUri = null
+
+        apkProgressBar.progress = 0
+        apkPercentageText.text = ""
+        apkProgressContainer.visibility = View.GONE
+        btnUploadApk.isEnabled = true
+
+        logoProgressBar.progress = 0
+        logoPercentageText.text = ""
+        logoProgressContainer.visibility = View.GONE
+        btnUploadLogo.isEnabled = true
+    }
+
 }

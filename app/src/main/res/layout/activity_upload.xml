@@ -71,6 +71,7 @@
                     android:layout_height="wrap_content"
                     android:hint="App Name"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/montserrat_light"
                     android:background="@drawable/edittext_background"
                     android:padding="12dp"
                     android:layout_marginBottom="16dp"/>
@@ -79,8 +80,9 @@
                     android:id="@+id/et_file_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="File Type (e.g., APK)"
+                    android:hint="Categories"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/montserrat_light"
                     android:background="@drawable/edittext_background"
                     android:layout_marginBottom="16dp"
                     android:padding="12dp"/>
@@ -90,6 +92,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="App Description"
+                    android:fontFamily="@font/montserrat_light"
                     android:textColor="@color/black"
                     android:background="@drawable/edittext_background"
                     android:padding="12dp"/>
@@ -163,6 +166,7 @@
                     android:layout_height="wrap_content"
                     android:hint="APK File URL"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/montserrat_light"
                     android:background="@drawable/edittext_background"
                     android:padding="12dp"
                     android:enabled="false"/>
@@ -211,6 +215,7 @@
                         android:layout_height="wrap_content"
                         android:text="Uploading Logo..."
                         android:textColor="@color/black"
+                        android:fontFamily="@font/montserrat_medium"
                         android:layout_marginBottom="4dp"/>
 
                     <ProgressBar
@@ -226,6 +231,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0%"
+                        android:fontFamily="@font/montserrat_light"
                         android:textColor="@color/black"
                         android:layout_gravity="end"/>
                 </LinearLayout>
@@ -236,6 +242,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Logo URL"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/montserrat_light"
                     android:background="@drawable/edittext_background"
                     android:padding="12dp"
                     android:enabled="false"/>
@@ -265,6 +272,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Will be auto-generated"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/montserrat_light"
                     android:background="@drawable/edittext_background"
                     android:padding="12dp"
                     android:enabled="false"/>

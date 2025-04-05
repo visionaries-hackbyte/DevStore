@@ -3,7 +3,7 @@ package com.developerspoints.devstores.NavBar
 import android.content.Intent
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.developerspoints.devstores.Categories.CategoriesActivity
+import com.developerspoints.devstores.Categories.Category
 import com.developerspoints.devstores.Downloads.DownloadsActivity
 import com.developerspoints.devstores.Home.Home
 import com.developerspoints.devstores.R
@@ -33,7 +33,7 @@ class NavBar(private val activity: AppCompatActivity) {
         }
 
         navBarHistory.setOnClickListener {
-            val intent = Intent(activity, CategoriesActivity::class.java)
+            val intent = Intent(activity, Category::class.java)
             activity.startActivity(intent)
         }
     }
